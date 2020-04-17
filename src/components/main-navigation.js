@@ -4,7 +4,7 @@ const createNavigationItem = (nav, active) => {
     `<a href="#${name.toLowerCase()}" 
         class="main-navigation__item ${active ? `main-navigation__item--active` : ``}">
         ${(name === `All`) ? `${name} movies` : `${name}`} 
-        ${count ? `<span class="main-navigation__item-count">${count}</span>` : ``}
+        ${(name !== `All`) ? `<span class="main-navigation__item-count">${count}</span>` : ``}
     </a>`
   );
 };

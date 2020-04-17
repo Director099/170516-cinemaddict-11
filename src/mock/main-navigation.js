@@ -1,14 +1,14 @@
-const generateNames = [
-  `All`, `Watchlist`, `History`, `Favorites`
-];
-
-const generateItems = () => {
-  return generateNames.map((it) => {
-    return {
-      name: it,
-      count: Math.floor(Math.random() * 10),
-    };
-  });
+export const generateItems = (item) => {
+  return [{
+    name: `All`,
+  }, {
+    name: `Watchlist`,
+    count: item.watchlist,
+  }, {
+    name: `History`,
+    count: item.history,
+  }, {
+    name: `Favorites`,
+    count: item.favorites,
+  }];
 };
-
-export {generateItems};

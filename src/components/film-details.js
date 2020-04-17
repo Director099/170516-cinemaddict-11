@@ -28,8 +28,7 @@ const createCommentsTemplate = (comments) => {
 };
 
 export const createFilmDetails = (card) => {
-  const {title, poster, rating, data, month, year, duration, country, genres, description, ageRating, director, actor, writer, comments} = card;
-  const countComments = comments.length;
+  const {title, poster, rating, data, month, year, duration, country, genres, description, ageRating, director, actor, writer, comments, countComment} = card;
   return (
     `<section class="film-details visually-hidden">
       <form class="film-details__inner" action="" method="get">
@@ -106,7 +105,7 @@ export const createFilmDetails = (card) => {
     
         <div class="form-details__bottom-container">
           <section class="film-details__comments-wrap">
-            <h3 class="film-details__comments-title">Comments <span class="film-details__comments-count">${countComments}</span></h3>
+            <h3 class="film-details__comments-title">Comments <span class="film-details__comments-count">${countComment}</span></h3>
     
             <ul class="film-details__comments-list">
               ${createCommentsTemplate(comments)}

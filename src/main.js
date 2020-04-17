@@ -25,12 +25,30 @@ const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
 };
 
+/**
+ * @description Показываем общее число просмотренных/избранных фильмов
+ * @param films - массив фильмов
+ * @returns {*} объект чисел на каждый из категории фильтра
+ */
+
+const getWatchFilms = (films) => films.reduce((stats, film) => {
+  if (film.isWatchlist) {
+    stats.watchlist += 1;
+  }
+  if (film.isHistory) {
+    stats.history += 1;
+  }
+  if (film.isFavorites) {
+    stats.favorites += 1;
+  }
+  return stats;
+}, {watchlist: 0, history: 0, favorites: 0});
+
 const pageHeader = document.querySelector(`.header`);
 const mainContent = document.querySelector(`.main`);
 const footerStatistics = document.querySelector(`.footer__statistics`);
-const navigationItem = generateItems();
-
 const filmCard = generateCountCard(MAX_CARD);
+const navigationItem = generateItems(getWatchFilms(filmCard));
 
 render(pageHeader, createProfile(), `beforeend`);
 render(mainContent, createMainNavigation(navigationItem), `beforeend`);

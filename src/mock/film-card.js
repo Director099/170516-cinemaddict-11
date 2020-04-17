@@ -128,6 +128,10 @@ const generateComment = () => {
   };
 };
 
+let randomBoolean = () => {
+  return Math.random() >= 0.5;
+};
+
 const generateCountComment = (count) => {
   return new Array(count).fill(``).map(generateComment);
 };
@@ -146,7 +150,6 @@ const generateCard = () => {
     genres: generateDescription(genreItems),
     rating: getRandomIntegerNumber(0, 10),
     year: getRandomIntegerNumber(1920, 2010),
-    countComments: getRandomIntegerNumber(0, 5),
     duration: `1h ${getRandomIntegerNumber(0, 60)}m`,
     data: getRandomIntegerNumber(0, 30),
     month: getRandomArrayItem(MONTH_NAMES),
@@ -155,6 +158,10 @@ const generateCard = () => {
     director: directorItems,
     writer: writersItems,
     actor: actorsItems,
+    countComment: countComments,
+    isHistory: randomBoolean(),
+    isWatchlist: randomBoolean(),
+    isFavorites: randomBoolean(),
     comments: generateCountComment(countComments),
   };
 };
