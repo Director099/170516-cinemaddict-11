@@ -11,7 +11,7 @@ import {createFilmDetails} from "./components/film-details.js";
 import {templateCard} from "./components/film-card.js";
 import {createBtnMore} from "./components/btn-more.js";
 import {createStatistics} from "./components/statistics.js";
-import {generateItems} from "./mock/main-navigation.js";
+import {generateItems, getWatchFilms} from "./mock/main-navigation.js";
 import {generateCountCard} from "./mock/film-card.js";
 
 /**
@@ -24,25 +24,6 @@ import {generateCountCard} from "./mock/film-card.js";
 const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
 };
-
-/**
- * @description Показываем общее число просмотренных/избранных фильмов
- * @param films - массив фильмов
- * @returns {*} объект чисел на каждый из категории фильтра
- */
-
-const getWatchFilms = (films) => films.reduce((stats, film) => {
-  if (film.isWatchlist) {
-    stats.watchlist += 1;
-  }
-  if (film.isHistory) {
-    stats.history += 1;
-  }
-  if (film.isFavorites) {
-    stats.favorites += 1;
-  }
-  return stats;
-}, {watchlist: 0, history: 0, favorites: 0});
 
 const pageHeader = document.querySelector(`.header`);
 const mainContent = document.querySelector(`.main`);
