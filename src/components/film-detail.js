@@ -1,3 +1,5 @@
+import {createElement} from "../utils/render";
+
 const createGenreTemplate = (genres) => {
   return genres.map((genre) => {
     return (
@@ -27,10 +29,10 @@ const createCommentsTemplate = (comments) => {
   }).join(`\n`);
 };
 
-export const createFilmDetails = (card) => {
+const createFilmDetails = (card) => {
   const {title, poster, rating, data, month, year, duration, country, genres, description, ageRating, director, actor, writer, comments, countComment} = card;
   return (
-    `<section class="film-details visually-hidden">
+    `<section class="film-details">
       <form class="film-details__inner" action="" method="get">
         <div class="form-details__top-container">
           <div class="film-details__close">
@@ -146,3 +148,42 @@ export const createFilmDetails = (card) => {
     </section>`
   );
 };
+
+export default class FilmDetail {
+  /**
+   * @description Для передачи обьяекта
+   * @param card Передаю объект о фильме
+   */
+
+  constructor(card) {
+    this._card = card;
+    this._elem = null;
+  }
+
+  /**
+   * @description Метод для создания HTML разметки
+   * @return {string} - возвращает результат функции
+   */
+  getTemplate() {
+    return createFilmDetails(this._card);
+  }
+
+  /**
+   * @description Возвращает ДОМ элемент
+   * @return {null}
+   */
+  getElement() {
+    if (!this._elem) {
+      this._elem = createElement(this.getTemplate());
+    }
+
+    return this._elem;
+  }
+
+  /**
+   * @description Удалять ДОМ элемент
+   */
+  removeElement() {
+    this._elem = null;
+  }
+}

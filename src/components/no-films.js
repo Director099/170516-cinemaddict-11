@@ -1,12 +1,14 @@
 import {createElement} from "../utils/render";
 
-const createFilmContent = () => {
+const createNoFilmsTemplate = () => {
   return (
-    `<section class="films"></section>`
+    `<section class="films-list">
+      <h2 class="films-list__title">There are no movies in our database</h2>
+    </section>`
   );
 };
 
-export default class FilmContent {
+export default class NoFilms {
   /**
    * @description Для передачи обьяекта
    */
@@ -19,7 +21,7 @@ export default class FilmContent {
    * @return {string} - возвращает результат функции
    */
   getTemplate() {
-    return createFilmContent();
+    return createNoFilmsTemplate();
   }
 
   /**
