@@ -1,4 +1,4 @@
-import {createElement} from "../utils/render";
+import AbstractComponent from "./abstract-component";
 
 const createProfile = () => {
   return (
@@ -9,13 +9,7 @@ const createProfile = () => {
   );
 };
 
-export default class Profile {
-  /**
-   * @description Для передачи обьяекта
-   */
-  constructor() {
-    this._elem = null;
-  }
+export default class Profile extends AbstractComponent {
 
   /**
    * @description Метод для создания HTML разметки
@@ -23,24 +17,5 @@ export default class Profile {
    */
   getTemplate() {
     return createProfile();
-  }
-
-  /**
-   * @description Возвращает ДОМ элемент
-   * @return {null}
-   */
-  getElement() {
-    if (!this._elem) {
-      this._elem = createElement(this.getTemplate());
-    }
-
-    return this._elem;
-  }
-
-  /**
-   * @description Удалять ДОМ элемент
-   */
-  removeElement() {
-    this._elem = null;
   }
 }

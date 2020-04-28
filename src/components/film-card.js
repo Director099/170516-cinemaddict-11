@@ -1,4 +1,4 @@
-import {createElement} from "../utils/render.js";
+import AbstractComponent from "./abstract-component";
 
 const templateCard = (card) => {
   const {title, poster, rating, year, duration, genres, description, countComment} = card;
@@ -24,15 +24,10 @@ const templateCard = (card) => {
   );
 };
 
-export default class FilmCard {
-  /**
-   * @description Для передачи обьяекта
-   * @param film - передаю обьект фильма
-   */
-
+export default class FilmCard extends AbstractComponent {
   constructor(film) {
+    super();
     this._film = film;
-    this._elem = null;
   }
 
   /**
@@ -41,25 +36,5 @@ export default class FilmCard {
    */
   getTemplate() {
     return templateCard(this._film);
-  }
-
-
-  /**
-   * @description Возвращает ДОМ элемент
-   * @return {null}
-   */
-  getElement() {
-    if (!this._elem) {
-      this._elem = createElement(this.getTemplate());
-    }
-
-    return this._elem;
-  }
-
-  /**
-   * @description Удалять ДОМ элемент
-   */
-  removeElement() {
-    this._elem = null;
   }
 }

@@ -1,4 +1,4 @@
-import {createElement} from "../utils/render";
+import AbstractComponent from "./abstract-component";
 
 const createGenreTemplate = (genres) => {
   return genres.map((genre) => {
@@ -149,15 +149,10 @@ const createFilmDetails = (card) => {
   );
 };
 
-export default class FilmDetail {
-  /**
-   * @description Для передачи обьяекта
-   * @param card Передаю объект о фильме
-   */
-
+export default class FilmDetail extends AbstractComponent {
   constructor(card) {
+    super();
     this._card = card;
-    this._elem = null;
   }
 
   /**
@@ -166,24 +161,5 @@ export default class FilmDetail {
    */
   getTemplate() {
     return createFilmDetails(this._card);
-  }
-
-  /**
-   * @description Возвращает ДОМ элемент
-   * @return {null}
-   */
-  getElement() {
-    if (!this._elem) {
-      this._elem = createElement(this.getTemplate());
-    }
-
-    return this._elem;
-  }
-
-  /**
-   * @description Удалять ДОМ элемент
-   */
-  removeElement() {
-    this._elem = null;
   }
 }

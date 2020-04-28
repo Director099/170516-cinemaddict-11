@@ -1,4 +1,5 @@
 import {createElement} from "../utils/render";
+import AbstractComponent from "./abstract-component";
 
 const createFilmList = (info) => {
   const {title, className, mainTitle} = info;
@@ -12,14 +13,10 @@ const createFilmList = (info) => {
   );
 };
 
-export default class FilmList {
-  /**
-   * @description Для передачи обьяекта
-   */
-
+export default class FilmList extends AbstractComponent {
   constructor(info) {
+    super();
     this._info = info;
-    this._elem = null;
   }
 
   /**
@@ -28,24 +25,5 @@ export default class FilmList {
    */
   getTemplate() {
     return createFilmList(this._info);
-  }
-
-  /**
-   * @description Возвращает ДОМ элемент
-   * @return {null}
-   */
-  getElement() {
-    if (!this._elem) {
-      this._elem = createElement(this.getTemplate());
-    }
-
-    return this._elem;
-  }
-
-  /**
-   * @description Удалять ДОМ элемент
-   */
-  removeElement() {
-    this._elem = null;
   }
 }

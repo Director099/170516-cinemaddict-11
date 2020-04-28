@@ -1,4 +1,4 @@
-import {createElement} from "../utils/render";
+import AbstractComponent from "./abstract-component";
 
 const createSort = () => {
   return (
@@ -10,38 +10,12 @@ const createSort = () => {
   );
 };
 
-export default class Sort {
-  /**
-   * @description Для передачи обьяекта
-   */
-  constructor() {
-    this._elem = null;
-  }
-
+export default class Sort extends AbstractComponent {
   /**
    * @description Метод для создания HTML разметки
    */
 
   getTemplate() {
     return createSort();
-  }
-
-  /**
-   * @description Возвращает ДОМ элемент
-   * @return {null}
-   */
-  getElement() {
-    if (!this._elem) {
-      this._elem = createElement(this.getTemplate());
-    }
-
-    return this._elem;
-  }
-
-  /**
-   * @description Удалять ДОМ элемент
-   */
-  removeElement() {
-    this._elem = null;
   }
 }

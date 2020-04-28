@@ -1,4 +1,5 @@
 import {createElement} from "../utils/render";
+import AbstractComponent from "./abstract-component";
 
 const createNavigationItem = (nav, active) => {
   const {name, count} = nav;
@@ -24,15 +25,10 @@ const createMainNavigation = (navigationItem) => {
   );
 };
 
-export default class MainNavigation {
-  /**
-   * @description Для передачи обьяекта
-   * @param item передаю шаблон пункта навигации
-   */
-
+export default class MainNavigation extends AbstractComponent {
   constructor(item) {
+    super();
     this._item = item;
-    this._elem = null;
   }
 
   /**
@@ -41,24 +37,5 @@ export default class MainNavigation {
    */
   getTemplate() {
     return createMainNavigation(this._item);
-  }
-
-  /**
-   * @description Возвращает ДОМ элемент
-   * @return {null}
-   */
-  getElement() {
-    if (!this._elem) {
-      this._elem = createElement(this.getTemplate());
-    }
-
-    return this._elem;
-  }
-
-  /**
-   * @description Удалять ДОМ элемент
-   */
-  removeElement() {
-    this._elem = null;
   }
 }

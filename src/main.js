@@ -1,14 +1,3 @@
-const KeyCode = {
-  ESC: 27,
-};
-
-const CardCount = {
-  MAX: 20,
-  START: 5,
-  NEXT: 5,
-  EXTRA: 2,
-};
-
 import Profile from "./components/profile";
 import MainNavigation from "./components/main-navigation";
 import Sort from "./components/sort";
@@ -19,6 +8,8 @@ import FilmDetail from "./components/film-detail";
 import FilmCard from "./components/film-card";
 import BtnMore from "./components/btn-more";
 import Statistics from "./components/statistics";
+
+import {KeyCode, CardCount} from "./const";
 import {generateItems, getWatchFilms} from "./mock/main-navigation";
 import {generateCountCard} from "./mock/film-card";
 import {render} from "./utils/render";
