@@ -162,4 +162,14 @@ export default class FilmDetail extends AbstractComponent {
   getTemplate() {
     return createFilmDetails(this._card);
   }
+
+  /**
+   * @description Клик по карточке
+   * @param elem поиск Элемента, на что кликаем
+   * @param handler Функция
+   */
+
+  setClickHandler(elem, handler) {
+    this.getElement().querySelector(elem).addEventListener(`click`, handler);
+  }
 }
