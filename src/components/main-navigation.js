@@ -1,4 +1,3 @@
-import {createElement} from "../utils/render";
 import AbstractComponent from "./abstract-component";
 
 const createNavigationItem = (nav, active) => {
