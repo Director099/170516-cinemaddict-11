@@ -28,7 +28,10 @@ export default class MovieController {
       this._onFilmClick();
     });
 
-    this._filmDetail.setClickHandler(`.film-details__close-btn`, this._onCloseFilmDetail);
+    this._filmDetail.setClickHandler(`.film-details__close-btn`, () => {
+      this._onCloseFilmDetail();
+    });
+
     render(this._container, this._filmCard.getElement());
 
     this._filmCard.setFavoritesButtonClickHandler((evt) => {
