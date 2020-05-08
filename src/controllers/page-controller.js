@@ -72,7 +72,7 @@ export default class PageController {
 
     this._btnMore.setClickHandler(() => {
       const filmListElement = this._mainListFilm.getElement().querySelector(`.films-list__container`);
-      this._showingdFilmsCount = this._showingdFilmsCount + CardCount.NEXT;
+      this._showingdFilmsCount += CardCount.NEXT;
 
       const newFilm = renderFilms(filmListElement, this._films.slice(0, this._showingdFilmsCount, this._onDataChange));
       this._showedFilmController = this._showedFilmController.concat(newFilm);
