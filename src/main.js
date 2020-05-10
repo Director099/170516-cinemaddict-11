@@ -14,7 +14,7 @@ import {render} from "./utils/render";
 const pageHeader = document.querySelector(`.header`);
 const mainContent = document.querySelector(`.main`);
 const footerStatistics = document.querySelector(`.footer__statistics`);
-const filmCardGenerate = generateCountCard(CardCount.START);
+const filmCardGenerate = generateCountCard(CardCount.MAX);
 const navigationItem = generateItems(getWatchFilms(filmCardGenerate));
 const filmsContent = new FilmContent();
 const pageController = new PageController(filmsContent);
