@@ -35,6 +35,7 @@ export default class PageController {
     this._noFilms = new NoFilms();
     this._btnMore = new BtnMore();
     this._onDataChange = this._onDataChange.bind(this);
+    this._onViewChange = this._onViewChange.bind(this);
   }
 
   render(films) {
@@ -42,7 +43,7 @@ export default class PageController {
     const container = this._container.getElement();
     const listFilmContainerMain = this._mainListFilm.getElement().querySelector(`.films-list__container`);
     const listFilmContainerTop = this._topListFilm.getElement().querySelector(`.films-list__container`);
-    const listFilmContainerMostComent = this._mostCommentedListFilm.getElement().querySelector(`.films-list__container`);
+    const listFilmContainerMostComment = this._mostCommentedListFilm.getElement().querySelector(`.films-list__container`);
 
     const isAllFilmsArchived = this._films.every((film) => film.isArchive);
 
@@ -51,9 +52,10 @@ export default class PageController {
       return;
     }
 
+
     render(container, this._mainListFilm.getElement());
 
-    const newFilm = renderFilms(listFilmContainerMain, this._films.slice(0, this._showingdFilmsCount, this._onDataChange));
+    const newFilm = renderFilms(listFilmContainerMain, this._films.slice(0, this._showingdFilmsCount), this._onDataChange);
     this._showedFilmController = this._showedFilmController.concat(newFilm);
 
     render(this._mainListFilm.getElement(), this._btnMore.getElement());
@@ -61,7 +63,7 @@ export default class PageController {
     render(container, this._mostCommentedListFilm.getElement());
 
     renderFilms(listFilmContainerTop, this._films.slice(0, CardCount.EXTRA));
-    renderFilms(listFilmContainerMostComent, this._films.slice(0, CardCount.EXTRA));
+    renderFilms(listFilmContainerMostComment, this._films.slice(0, CardCount.EXTRA));
 
     this._renderLoadMoreButton();
   }
@@ -74,15 +76,23 @@ export default class PageController {
       const filmListElement = this._mainListFilm.getElement().querySelector(`.films-list__container`);
       const prevFilmCount = this._showingdFilmsCount;
       this._showingdFilmsCount += CardCount.NEXT;
-      console.log(prevFilmCount)
 
-      const newFilm = renderFilms(filmListElement, this._films.slice(prevFilmCount, this._showingdFilmsCount, this._onDataChange));
+      const newFilm = renderFilms(filmListElement, this._films.slice(prevFilmCount, this._showingdFilmsCount), this._onDataChange);
       this._showedFilmController = this._showedFilmController.concat(newFilm);
 
       if (this._showingdFilmsCount >= this._films.length) {
         remove(this._btnMore);
       }
     });
+  }
+
+  /**
+   * @description не до конца понял суть функции (Оставил на врмемя модуль6)
+   * @private
+   */
+
+  _onViewChange() {
+    this._showedFilmController.forEach((it) => it.setDefaultView());
   }
 
   /**

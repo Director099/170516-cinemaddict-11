@@ -15,6 +15,7 @@ const createCheckedMarkup = (name, text, isActive = true) => {
   );
 };
 
+
 const createEmojiImg = (name) => {
   const img = document.createElement(`img`);
   img.src = `images/emoji/${name}.png`;
@@ -168,12 +169,8 @@ export default class FilmDetail extends AbstractSmartComponent {
     super();
     this._card = card;
 
-    this._submitHandler = null;
-    this._subscribeOnEvents();
-  }
-
-  recoveryListeners() {
-    this.setSubmitHandler(this._submitHandler);
+    this._controlButtonsChangeHandler = null;
+    this._closeButtonHandler = null;
     this._subscribeOnEvents();
   }
 
@@ -199,22 +196,30 @@ export default class FilmDetail extends AbstractSmartComponent {
     this.getElement().querySelector(elem).addEventListener(`click`, handler);
   }
 
-  setSubmitHandler(handler) {
-    this.getElement().querySelector(`form`)
-      .addEventListener(`submit`, handler);
+  recoveryListeners() {
+    this.setCloseButtonHandler(this._closeButtonHandler);
+    this.setControlButtonsChangeHandler(this._controlButtonsChangeHandler);
+    this._subscribeOnEvents();
+  }
 
-    this._submitHandler = handler;
+  setCloseButtonHandler(handler) {
+    this.getElement().querySelector(`.film-details__close-btn`).addEventListener(`click`, handler);
+    this._closeButtonHandler = handler;
+  }
+
+  setControlButtonsChangeHandler(handler) {
+    this.getElement().querySelector(`.film-details__controls`).addEventListener(`change`, (evt) => {
+      handler(evt.target.id);
+    });
+    this._controlButtonsChangeHandler = handler;
   }
 
   _subscribeOnEvents() {
     const element = this.getElement();
     const addEmoji = element.querySelector(`.film-details__add-emoji-label`);
-    const textareaComment = element.querySelector(`.film-details__comment-input`);
     const emojiList = element.querySelector(`.film-details__emoji-list`);
 
     const renderCommentEmoji = (name) => {
-      this._isEmoji = true;
-      this._emojiName = name;
       const image = createEmojiImg(name);
       addEmoji.innerHTML = ``;
       addEmoji.appendChild(image);

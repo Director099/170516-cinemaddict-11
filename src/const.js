@@ -23,3 +23,14 @@ export const CardCount = {
   NEXT: 5,
   EXTRA: 2,
 };
+
+export const Mode = {
+  DEFAULT: `default`,
+  MODAL: `modal`,
+};
+export const ControlID = {
+  WATCHLIST: `watchlist`,
+  HISTORY: `watched`,
+  FAVORITE: `favorite`,
+};
+
